@@ -15,7 +15,7 @@ public class FluentInterface<T> implements InvocationHandler {
 		this.obj = obj;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({"rawtypes","unchecked"})	
 	public static <T> T create(Object object, Class fluentInterfaceClass) {
 		
 		FluentInterface handler = new FluentInterface(object);
