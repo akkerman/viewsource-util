@@ -4,7 +4,6 @@ package nl.viewsource.util;
  * Utility class with some convenience methods on java.lang.String.
  * 
  * @author Marcel Akkerman
- * @version $Id: StringUtils.java 275 2008-03-14 08:37:21Z akkerman $
  */
 public final class StringUtils {
 
@@ -19,7 +18,7 @@ public final class StringUtils {
 	 * Checks if the parameter is empty. A parameter is considered empty if
 	 * <ul>
 	 * <li>the variable is null or,
-	 * <li>the ength of the string is 0 or,
+	 * <li>the length of the string is 0 or,
 	 * <li>the string contains only whitespace.
 	 * 
 	 * @param s
@@ -32,8 +31,7 @@ public final class StringUtils {
 	/**
 	 * Returns the empty String if parameter is null.
 	 * 
-	 * @param s
-	 *            the string to make nullsave
+	 * @param s the string to make null-save
 	 * @return empty string if s is null, s otherwise
 	 */
 	public static String notNull(final String s) {
@@ -46,9 +44,11 @@ public final class StringUtils {
 	 * Checks if the provided parameter contains only digits, possibly starting
 	 * with a minus (-) sign.<br>
 	 * When this method returns <code>true</code> parsing the parameter to 
-	 * an Integer should not yield a <code>NumberFormatException</code>.
+	 * an Integer should not yield a <code>NumberFormatException</code> 
+	 * (unless the integer is out of range)
+	 * 
 	 * @param s parameter possibly holding an integer
-	 * @return <code>true</code> if param is an integer, <code>false</code> otherwise
+	 * @return <code>true</code> if parameter is an integer, <code>false</code> otherwise
 	 */
 	public static boolean isInteger(final String s) {
 		return !isEmpty(s) && s.matches(intPattern);
@@ -59,10 +59,8 @@ public final class StringUtils {
 	/**
 	 * Returns a left zero padded string.
 	 * 
-	 * @param s
-	 *            string to padd
-	 * @param len
-	 *            total length of the desired string
+	 * @param s string to pad
+	 * @param len total length of the desired string
 	 * @return left zero padded string
 	 */
 	public static String zeroPadd(final String s, final int len) {
@@ -83,11 +81,10 @@ public final class StringUtils {
 	}
 
 	/**
-	 * Converts the the first character of the given string to uppercase.
+	 * Converts the the first character of the given string to upper case.
 	 * 
-	 * @param s
-	 *            string to convert
-	 * @return string with first character to Uppercase (or <code>s</code>,
+	 * @param s string to convert
+	 * @return string with first character to Upper case (or <code>s</code>,
 	 *         if <code>s</code> is empty)
 	 */
 	public static String firstToUpper(String s) {
