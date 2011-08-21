@@ -18,8 +18,7 @@ import org.apache.log4j.Logger;
 /**
  * Makes it possible to call an URL from outside the server as if it were on the server.
  * Particularly useful to redirect JSON calls (which are only allowed on the same server)
- * @author Marcel Akkerman
- * @version $Id: UrlWrapperServlet.java 9 2008-03-04 20:33:19Z akkerman $
+ * @author Marcel Akkerman 
  */
 public class UrlWrapperServlet extends HttpServlet {
 

@@ -7,7 +7,7 @@ package nl.viewsource.util;
  */
 public final class StringUtils {
 
-	// Suppress default constructor for noninstantiability
+	// Suppress default constructor to prevent instantiation
 	private StringUtils() {
 		// This constructor will never be invoked
 	}
