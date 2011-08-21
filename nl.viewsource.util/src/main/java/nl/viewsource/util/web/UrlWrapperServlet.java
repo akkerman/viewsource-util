@@ -44,7 +44,7 @@ public class UrlWrapperServlet extends HttpServlet {
 		logger.debug(String.format("ContentType for %s = %s", query, conn.getContentType()));
 		
 		String contentType = conn.getContentType(); 
-		// check if the reply is somthing we can parse (i.e. text type)
+		// check if the reply is something we can parse (i.e. text type)
 		if ( contentType != null && contentType.contains("text/")) {
 			int responseCode = conn.getResponseCode();
 			logger.debug("Responsecode: " + responseCode);
