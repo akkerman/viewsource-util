@@ -15,11 +15,12 @@ public class FluentInterface<T> implements InvocationHandler {
 		this.obj = obj;
 	}
 
-	@SuppressWarnings({"rawtypes","unchecked"})	
-	public static <T> T create(Object object, Class fluentInterfaceClass) {
 		
-		FluentInterface handler = new FluentInterface(object);
+	public static <T> T create(Object object, Class<T> fluentInterfaceClass) {
 		
+		FluentInterface<T> handler = new FluentInterface<T>(object);
+	
+		@SuppressWarnings({"unchecked"})
 		T fluentInterface = (T) Proxy.newProxyInstance(fluentInterfaceClass.getClassLoader(), new Class[] { fluentInterfaceClass }, handler);
 		return fluentInterface;
 	}
