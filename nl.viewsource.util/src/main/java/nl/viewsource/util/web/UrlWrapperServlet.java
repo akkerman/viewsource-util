@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 
 /**
  * Makes it possible to call an URL from outside the server as if it were on the server.
@@ -24,7 +27,7 @@ public class UrlWrapperServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -5779645820428290260L;
 
-	private static final Logger logger = Logger.getLogger(UrlWrapperServlet.class);
+	private static final Logger logger = LoggerFactory.getLogger(UrlWrapperServlet.class);
 
 	private String url;
 
