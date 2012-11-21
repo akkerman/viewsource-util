@@ -1,13 +1,14 @@
 package nl.viewsource.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertTrue;
 import static nl.viewsource.util.StringUtils.*;
+import static org.junit.Assert.*;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
 
 public class TestStringUtils {
 
@@ -168,4 +169,26 @@ public class TestStringUtils {
 		assertEquals(expected, result);
 	}
 
+    @Test
+    public void testClass$isFinal() {
+        int modifiers = StringUtils.class.getModifiers();
+        assertTrue(Modifier.isFinal(modifiers));
+    }
+
+    @Test
+    public void testClass$onePrivateDefaultConstructor() throws NoSuchMethodException {
+        Constructor<?>[] ctors = StringUtils.class.getDeclaredConstructors();
+        assertEquals("exactly one constructor expected", 1, ctors.length);
+        Constructor ctor = ctors[0];
+        assertFalse("constructor is not accessible", ctor.isAccessible());
+        int modif = ctors[0].getModifiers();
+        assertTrue("constructor is default", Modifier.isPrivate(modif));
+    }
+
+    @Test
+    public void boostTestCoverage_instantiatePrivateConstructor() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Constructor ctor = StringUtils.class.getDeclaredConstructor();
+        ctor.setAccessible(true);
+        ctor.newInstance();
+    }
 }
