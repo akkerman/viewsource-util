@@ -180,9 +180,9 @@ public class TestStringUtils {
         Constructor<?>[] ctors = StringUtils.class.getDeclaredConstructors();
         assertEquals("exactly one constructor expected", 1, ctors.length);
         Constructor ctor = ctors[0];
-        assertFalse("constructor is not accessible", ctor.isAccessible());
+        assertFalse("constructor should not be accessible", ctor.isAccessible());
         int modif = ctors[0].getModifiers();
-        assertTrue("constructor is default", Modifier.isPrivate(modif));
+        assertTrue("constructor should be default", Modifier.isPrivate(modif));
     }
 
     @Test
