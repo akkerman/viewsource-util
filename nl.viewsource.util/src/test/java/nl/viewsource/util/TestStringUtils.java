@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
+import static nl.viewsource.util.StringUtils.*;
 
 import org.junit.Test;
 
@@ -49,39 +50,28 @@ public class TestStringUtils {
 		assertEquals(TEST_WHITE, result);
 	}
 
-	private void testIsInteger(String input) {
-		final boolean isInteger = StringUtils.isInteger(input);
-
-		try {
-			Integer.parseInt(input);			
-			assertTrue("expected to fail parsing " + input, isInteger);			
-		} catch (NumberFormatException e) {
-			assertFalse("expected to pass parsing " + input, isInteger);			 
-		}
-	}
-
 	@Test
 	public void testIsInteger$whitespace() {
 		final String input = TEST_WHITE;
-		this.testIsInteger(input);
+		assertFalse(isInteger(input));
 	}
 
 	@Test
 	public void testIsInteger$negative() {
 		final String input = String.valueOf(-1);
-		this.testIsInteger(input);
+		assertTrue(isInteger(input));
 	}
 	
 	@Test
 	public void testIsInteger$long() {
 		final String input = String.valueOf(Long.MAX_VALUE);
-		this.testIsInteger(input);
+		assertTrue(isInteger(input));
 	}
 
 	@Test
 	public void testIsInteger$float() {
 		final String input = String.valueOf(12.4f);
-		this.testIsInteger(input);
+		assertFalse(isInteger(input));
 	}
 
 	@Test
