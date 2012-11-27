@@ -3,7 +3,6 @@ package nl.viewsource.util;
 import static nl.viewsource.util.StringUtils.*;
 import static org.junit.Assert.*;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
