@@ -1,13 +1,17 @@
 package nl.viewsource.util;
 
-import static nl.viewsource.util.StringUtils.*;
-import static org.junit.Assert.*;
-
-import org.junit.Test;
+import static nl.viewsource.util.StringUtils.isInteger;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
+
+import org.junit.Test;
 
 public class TestStringUtils {
 
@@ -118,8 +122,101 @@ public class TestStringUtils {
 
 		final String result = StringUtils.zeroPadd(input, 10);
 		assertEquals(expected, result);
+	}	
+	
+	
+	@Test
+	public void testLpadd$Null() {
+		final String input = TEST_NULL;
+		final String expected = "----------";
+
+		final String result = StringUtils.lpadd(input, 10, '-');
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testLpadd$10() {
+		final String input = "2008";
+		final String expected = "------2008";
+
+		final String result = StringUtils.lpadd(input, 10,'-');
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testLpadd$11Null() {
+		final String input = TEST_NULL;
+		final String expected = "===========";
+
+		final String result = StringUtils.lpadd(input, 11,'=');
+		assertEquals(expected, result);
 	}
 
+	@Test
+	public void testLpadd$50() {
+		final String input = "van1974tot2008";
+		final String expected = "////////////////////////////////////van1974tot2008";
+		final int size = 50;
+
+		final String result = StringUtils.lpadd(input, size,'/');
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void testLpadd$TooLarge() {
+		final String input = "112233445566778899";
+		final String expected = input;
+
+		final String result = StringUtils.lpadd(input, 10,' ');
+		assertEquals(expected, result);
+	}	
+
+	@Test
+	public void testRpadd$Null() {
+		final String input = TEST_NULL;
+		final String expected = "----------";
+
+		final String result = StringUtils.rpadd(input, 10, '-');
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testRpadd$10() {
+		final String input = "2008";
+		final String expected = "2008------";
+
+		final String result = StringUtils.rpadd(input, 10,'-');
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testRpadd$11Null() {
+		final String input = TEST_NULL;
+		final String expected = "===========";
+
+		final String result = StringUtils.rpadd(input, 11,'=');
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void testRpadd$50() {
+		final String input = "van1974tot2008";
+		final String expected = "van1974tot2008////////////////////////////////////";
+		final int size = 50;
+
+		final String result = StringUtils.rpadd(input, size,'/');
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void testRpadd$TooLarge() {
+		final String input = "112233445566778899";
+		final String expected = input;
+
+		final String result = StringUtils.rpadd(input, 10,' ');
+		assertEquals(expected, result);
+	}	
+	
 	@Test
 	public void testFirstToUpper$null() {
 		final String result = StringUtils.firstToUpper(TEST_NULL);
