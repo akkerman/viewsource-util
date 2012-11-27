@@ -1,5 +1,7 @@
 package nl.viewsource.util;
 
+import java.util.Arrays;
+
 /**
  * Utility class with some convenience methods on java.lang.String.
  * 
@@ -31,51 +33,68 @@ public final class StringUtils {
 	/**
 	 * Returns the empty String if parameter is null.
 	 * 
-	 * @param s the string to make null-save
+	 * @param s
+	 *            the string to make null-save
 	 * @return empty string if s is null, s otherwise
 	 */
 	public static String notNull(final String s) {
 		return s == null ? EMPTY : s;
 	}
 
-	private static final String intPattern = "-?\\d+";		
+	private static final String intPattern = "-?\\d+";
 
 	/**
 	 * Checks if the provided parameter contains only digits, possibly starting
 	 * with a minus (-) sign.<br>
-	 * When this method returns <code>true</code> parsing the parameter to 
-	 * an Integer should not yield a <code>NumberFormatException</code> 
-	 * (unless the integer is out of range)
+	 * When this method returns <code>true</code> parsing the parameter to an
+	 * Integer should not yield a <code>NumberFormatException</code> (unless the
+	 * integer is out of range)
 	 * 
-	 * @param s parameter possibly holding an integer
-	 * @return <code>true</code> if parameter is an integer, <code>false</code> otherwise
+	 * @param s
+	 *            parameter possibly holding an integer
+	 * @return <code>true</code> if parameter is an integer, <code>false</code>
+	 *         otherwise
 	 */
 	public static boolean isInteger(final String s) {
 		return !isEmpty(s) && s.matches(intPattern);
 	}
 
-	private static String ZEROES = "0000000000";
-
 	/**
 	 * Returns a left zero padded string.
 	 * 
-	 * @param s string to pad
-	 * @param len total length of the desired string
+	 * @param s
+	 *            string to pad
+	 * @param len
+	 *            total length of the desired string
 	 * @return left zero padded string
 	 */
 	public static String zeroPadd(final String s, final int len) {
+		return lpadd(s, len, '0');
+	}
+
+	public static String lpadd(final String s, final int len, final char c) {
+		return padd(s,len,c,true);
+	}
+	
+	public static String rpadd(final String s, final int len, final char c) {
+		return padd(s,len,c,false);
+	}
+
+	private static String padd(final String s, final int len, final char c,
+			final boolean left) {
 		String ns = notNull(s);
-
-		if (ns.length() < len) { // pad on left with zeros
-			StringBuffer padded = new StringBuffer(ZEROES);
-			for (int i = 0, max = len / 10; i < max; i++) {
-				padded.append(ZEROES);
-			}
-			padded.append(ns);
-
+		if (len <= ns.length()) {
+			return ns;
+		}
+		char[] characters = new char[len];
+		Arrays.fill(characters, c);
+		String padded = String.copyValueOf(characters);
+		if (left) {
+			padded = padded + ns;
 			ns = padded.substring(padded.length() - len);
 		} else {
-			assert ns.equals(s);
+			padded = ns + padded;
+			ns = padded.substring(0,len);
 		}
 		return ns;
 	}
@@ -83,9 +102,10 @@ public final class StringUtils {
 	/**
 	 * Converts the the first character of the given string to upper case.
 	 * 
-	 * @param s string to convert
-	 * @return string with first character to Upper case (or <code>s</code>,
-	 *         if <code>s</code> is empty)
+	 * @param s
+	 *            string to convert
+	 * @return string with first character to Upper case (or <code>s</code>, if
+	 *         <code>s</code> is empty)
 	 */
 	public static String firstToUpper(String s) {
 		if (isEmpty(s)) {
