@@ -93,7 +93,7 @@ public class TestStringUtils {
     }
 
     @Test
-    public void testZeroPass$11Null() {
+    public void zeroPad_nullValueLength11_11zeroes() {
         final String input = TEST_NULL;
         final String expected = "00000000000";
 
@@ -263,13 +263,13 @@ public class TestStringUtils {
     }
 
     @Test
-    public void testClass$isFinal() {
+    public void Class_isFinal() {
         int modifiers = StringUtils.class.getModifiers();
         assertTrue(Modifier.isFinal(modifiers));
     }
 
     @Test
-    public void testClass$onePrivateDefaultConstructor() throws NoSuchMethodException {
+    public void Class_onePrivateDefaultConstructor() throws NoSuchMethodException {
         Constructor<?>[] constructors = StringUtils.class.getDeclaredConstructors();
         assertEquals("exactly one constructor expected", 1, constructors.length);
         Constructor<?> constructor = constructors[0];
