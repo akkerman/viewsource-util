@@ -92,7 +92,7 @@ public class TestStringUtils {
         assertEquals(expected, result);
     }
 
-    @Test
+    @Test                               
     public void zeroPad_nullValueLength11_11zeroes() {
         final String input = TEST_NULL;
         final String expected = "00000000000";
@@ -122,7 +122,7 @@ public class TestStringUtils {
 
 
     @Test
-    public void lpadd_Null() {
+    public void lpad_Null() {
         final String input = TEST_NULL;
         final String expected = "----------";
 
@@ -131,7 +131,7 @@ public class TestStringUtils {
     }
 
     @Test
-    public void lpadd_10() {
+    public void lpad_10() {
         final String input = "2008";
         final String expected = "------2008";
 
@@ -140,7 +140,7 @@ public class TestStringUtils {
     }
 
     @Test
-    public void lpadd_11Null() {
+    public void lpad_11Null() {
         final String input = TEST_NULL;
         final String expected = "===========";
 
@@ -149,7 +149,7 @@ public class TestStringUtils {
     }
 
     @Test
-    public void lpadd_50() {
+    public void lpad_50() {
         final String input = "van1974tot2008";
         final String expected = "////////////////////////////////////van1974tot2008";
         final int size = 50;
@@ -159,7 +159,7 @@ public class TestStringUtils {
     }
 
     @Test
-    public void lpadd_TooLarge() {
+    public void lpad_TooLarge() {
         final String input = "112233445566778899";
         final String expected = input;
 
@@ -168,7 +168,7 @@ public class TestStringUtils {
     }
 
     @Test
-    public void rpadd_Null() {
+    public void rpad_Null() {
         final String input = TEST_NULL;
         final String expected = "----------";
 
@@ -177,7 +177,7 @@ public class TestStringUtils {
     }
 
     @Test
-    public void rpadd_10() {
+    public void rpad_10() {
         final String input = "2008";
         final String expected = "2008------";
 
@@ -186,7 +186,7 @@ public class TestStringUtils {
     }
 
     @Test
-    public void rpadd_11Null() {
+    public void rpad_11Null() {
         final String input = TEST_NULL;
         final String expected = "===========";
 
@@ -195,7 +195,7 @@ public class TestStringUtils {
     }
 
     @Test
-    public void rpadd_50() {
+    public void rpad_50() {
         final String input = "van1974tot2008";
         final String expected = "van1974tot2008////////////////////////////////////";
         final int size = 50;
@@ -205,7 +205,7 @@ public class TestStringUtils {
     }
 
     @Test
-    public void rpadd_TooLarge() {
+    public void rpad_TooLarge() {
         final String input = "112233445566778899";
         final String expected = input;
 
