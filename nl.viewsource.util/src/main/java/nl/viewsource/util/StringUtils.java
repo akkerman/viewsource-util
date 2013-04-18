@@ -11,7 +11,7 @@ public final class StringUtils {
 
     // Suppress default constructor to prevent instantiation
     private StringUtils() {
-        // This constructor will never be invoked
+		throw new AssertionError("No instance for you!");
     }
 
     public static final String EMPTY = "";
