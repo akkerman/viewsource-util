@@ -92,7 +92,7 @@ public class TestStringUtils {
         assertEquals(expected, result);
     }
 
-    @Test                               
+    @Test
     public void zeroPad_nullValueLength11_11zeroes() {
         final String input = TEST_NULL;
         final String expected = "00000000000";
@@ -280,8 +280,14 @@ public class TestStringUtils {
 
     @Test
     public void boostTestCoverage_instantiatePrivateConstructor() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        Constructor<StringUtils> constructor = StringUtils.class.getDeclaredConstructor();
-        constructor.setAccessible(true);
-        constructor.newInstance();
+        try {
+            Constructor<StringUtils> constructor = StringUtils.class.getDeclaredConstructor();
+            constructor.setAccessible(true);
+            constructor.newInstance();
+            fail("should not be able to create instance of StringUtils");
+        } catch (InvocationTargetException ite) {
+            Throwable cause = ite.getCause();
+            assertEquals(cause.getClass(), AssertionError.class);
+        }
     }
 }
